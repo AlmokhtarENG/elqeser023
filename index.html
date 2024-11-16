@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختراق!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px red;
+            animation: flicker 1.5s infinite;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        #loading {
+            margin-top: 20px;
+            color: lime;
+            font-size: 1.2rem;
+        }
+
+        #reveal {
+            margin-top: 30px;
+            color: white;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1> Your device has been hacked !</h1>
+    <p>جميع بياناتك الآن في أيدينا. </p>
+    <div id="loading"></div>
+    <button onclick="reveal()">ماذا يحدث؟</button>
+    <p id="reveal">  It was completed. ☠️☠️:::::Download all data from your phone   .</p>
+
+    <script>
+        // نصوص تحميل وهمية
+        const fakeData = [
+            "جاري تحميل جهات الاتصال...",
+            "تحميل الصور (123/200)...",
+            "الوصول إلى رسائل الواتساب...",
+            "نسخ الملفات الخاصة...",
+            "تحميل البيانات البنكية..."
+        ];
+
+        const loadingDiv = document.getElementById("loading");
+        let index = 0;
+
+        // عرض النصوص بشكل تدريجي
+        function loadFakeData() {
+            if (index < fakeData.length) {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = fakeData[index];
+                loadingDiv.appendChild(paragraph);
+                index++;
+                setTimeout(loadFakeData, 2000); // يظهر النص كل ثانيتين
+            }
+        }
+
+        // بدء تحميل البيانات عند فتح الصفحة
+        window.onload = loadFakeData;
+
+        // الكشف عن المزحة
+        function reveal() {
+            document.getElementById("reveal").style.display = "block";
+        }
+    </script>
+</body>
+</html>
